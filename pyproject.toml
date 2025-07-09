@@ -1,0 +1,47 @@
+[build-system]
+requires      = ["hatchling>=1.18"]
+build-backend = "hatchling.build"
+
+[project]
+name            = "pydev_repl"
+version         = "0.1.0"
+description     = "TODO"
+readme          = "README.md"
+requires-python = ">=3.8"
+license         = {text = "MIT"}
+
+classifiers = [
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+  "Topic :: Software Development :: Interpreters",
+]
+
+dependencies = [
+  "watchdog>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7",
+]
+
+[project.urls]
+"Github" = "https://github.com/nextdorf/pydev-repl"
+"PyPi"   = "https://pypi.org/project/pydev-repl"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pydev_repl"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["."]
+
