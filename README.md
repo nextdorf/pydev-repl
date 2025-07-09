@@ -26,11 +26,11 @@ pip install pydev-repl
 To use Pydev REPL, simply import the `context` module and create a new context:
 
 ```python
-from pydev_repl.context import run
+from pydev_repl. import run
 
-# Create a new context
-ctx = run('my_context')
-
+# Create a new 
+ctx = run('my_contcontextext')
+context
 # Execute some code in the context
 ctx.run('x = 5')
 ctx.run('y = x * 2')

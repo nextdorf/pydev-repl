@@ -31,6 +31,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
   "pytest>=7",
+  "numpy>=1.23",
 ]
 
 [project.urls]
@@ -44,4 +45,3 @@ packages = ["pydev_repl"]
 addopts = "-q"
 testpaths = ["tests"]
 pythonpath = ["."]
-

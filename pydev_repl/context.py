@@ -21,7 +21,7 @@ from types import ModuleType
 from typing import Dict, List
 import ast
 
-from parse import affected_snippet
+from .parse import affected_snippet
 
 
 # ─────────────────────────────────────────────────────────────────────────────

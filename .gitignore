@@ -130,4 +130,5 @@ dmypy.json
 
 # custom
 local/
-pydef-repl/_version.py
+pydef_repl/_version.py
+/tmp*

@@ -1,0 +1,46 @@
+# Contributor: Nextdorf <nextdorf@users.noreply.github.com>
+
+_pkgname=pydev-repl
+pkgname="python-${_pkgname}"
+provides=("python-${_pkgname}")
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="A Programmable REPL for Python Development"
+arch=("any")
+url="https://github.com/nextdorf/pydev-repl"
+license=('MIT')
+depends=(python python-watchdog)
+makedepends=('python-build' 'python-installer' 'python-numpy')
+checkdepends=('python-pytest')
+options=(!debug)
+
+prepare() {
+  cd "${srcdir}/../.."
+  pwd
+  python -m build --sdist --outdir "${srcdir}"
+
+  mv "${srcdir}/${_pkgname//-/_}-${pkgver}.tar.gz" \
+     "${srcdir}/${_pkgname}-${pkgver}.tar.gz"
+
+  cd "${srcdir}"
+  tar -xvf "${_pkgname}-${pkgver}.tar.gz"
+}
+
+build() {
+  cd "${_pkgname//-/_}-${pkgver}"
+  python -m build --wheel --no-isolation
+}
+
+check() {
+  cd "${_pkgname//-/_}-${pkgver}"
+  # Run tests in quiet mode; PYTHONPATH='.' makes local package importable.
+  PYTHONPATH="." pytest -q
+}
+
+
+package() {
+  cd "${_pkgname//-/_}-${pkgver}"
+  python -m installer --destdir="${pkgdir}" dist/*.whl
+  install -Dm644 LICENSE -t ${pkgdir}/usr/share/licenses/python-${_pkgname}/
+}
+
