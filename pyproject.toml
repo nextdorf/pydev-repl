@@ -33,7 +33,8 @@ dev = [
   "pytest>=7",
   "numpy>=1.23",
   "ruff>=0.4",
-  "black>=24",
+  "yapf>=0.40",
+  "argcomplete>=3.0",
 ]
 
 [project.urls]
@@ -53,11 +54,11 @@ source = "vcs"
 fallback-version = "0.0.0.dev0"
 
 [tool.hatch.build]
-# ship license & type-hint marker
 include = [
   "pydev_repl/**/*.py",
   "pydev_repl/py.typed",
   "LICENSE",
+  "tests/**/*.py",
 ]
 
 [tool.pytest.ini_options]

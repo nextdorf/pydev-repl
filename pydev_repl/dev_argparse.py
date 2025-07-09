@@ -75,4 +75,9 @@ def parse_argv(argv: Optional[List[str]] = None) -> argparse.Namespace:
       help='Increase logging verbosity; repeat for more detail.',
   )
 
+  try:
+    import argcomplete
+    argcomplete.autocomplete(parser)
+  except ImportError:
+    pass
   return parser.parse_args(argv)

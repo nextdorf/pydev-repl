@@ -29,6 +29,8 @@ prepare() {
 build() {
   cd "${_pkgname//-/_}-${pkgver}"
   python -m build --wheel --no-isolation
+
+  register-python-argcomplete "${_pkgname}" > "${_pkgname}.bash"
 }
 
 check() {
@@ -41,6 +43,7 @@ check() {
 package() {
   cd "${_pkgname//-/_}-${pkgver}"
   python -m installer --destdir="${pkgdir}" dist/*.whl
-  install -Dm644 LICENSE -t ${pkgdir}/usr/share/licenses/python-${_pkgname}/
+  install -Dm644 LICENSE -t ${pkgdir}/usr/share/licenses/${pkgname}/
+  install -Dm644 "${_pkgname}.bash" "$pkgdir/usr/share/bash-completion/completions/${_pkgname}"
 }
 
