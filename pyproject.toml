@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name            = "pydev_repl"
 version         = "0.1.0"
 description     = "TODO"
-readme          = "README.md"
+readme          = {file = "README.md", content-type = "text/markdown"}
 requires-python = ">=3.8"
 license         = {text = "MIT"}
 
@@ -32,14 +32,33 @@ dependencies = [
 dev = [
   "pytest>=7",
   "numpy>=1.23",
+  "ruff>=0.4",
+  "black>=24",
 ]
 
 [project.urls]
 "Github" = "https://github.com/nextdorf/pydev-repl"
 "PyPi"   = "https://pypi.org/project/pydev-repl"
 
+[project.scripts]
+pydev-repl = "pydev_repl.__main__:main"
+
 [tool.hatch.build.targets.wheel]
 packages = ["pydev_repl"]
+license-files = ["LICENSE"]
+
+[tool.hatch.version]
+source = "vcs"
+# optional: fallback if not on a tag
+fallback-version = "0.0.0.dev0"
+
+[tool.hatch.build]
+# ship license & type-hint marker
+include = [
+  "pydev_repl/**/*.py",
+  "pydev_repl/py.typed",
+  "LICENSE",
+]
 
 [tool.pytest.ini_options]
 addopts = "-q"
